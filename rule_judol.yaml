@@ -1,0 +1,27 @@
+# FILE: rule_judol.yaml
+# Ini adalah daftar aturan regex untuk memblokir domain judi online.
+# Pastikan indentasi dan format YAML benar.
+
+payload:
+  # === Regex untuk memblokir domain yang mengandung kata kunci judi ===
+  # Kata kunci umum judi: slot, judi, casino, poker, bet, togel, maxwin, gacor, wede, rtp, jp, sbobet, baccarat, qq, pragmatic, liveslot, nolimit, deposit, withdraw, linkalternatif, login
+  # Ekstensi domain umum yang terkait judi: com, net, org, site, fun, online, xyz, biz, info, club, vip, live, top, co, id, me, io, win, icu, buzz, cyou, shop, asia, best, digital, games, group, link, mobi, monster, name, ninja, pro, pw, quest, racing, rocks, sbs, store, systems, tech, today, trade, uno, us, vc, vg, wiki, ws, zone, cc
+
+  # Regex umum untuk memblokir domain yang mengandung kata kunci judi di mana saja dalam nama domain atau subdomain, diikuti oleh ekstensi domain umum
+  - DOMAIN-REGEX,^(.*\.)?(judi|slot|casino|poker|bet|togel|maxwin|gacor|wede|rtp|jp|sbobet|baccarat|qq|pragmatic|liveslot|nolimit|deposit|withdraw|linkalternatif|login)\.(com|net|org|site|fun|online|xyz|biz|info|club|vip|live|top|co|id|me|io|win|icu|buzz|cyou|shop|asia|best|digital|games|group|link|mobi|monster|name|ninja|pro|pw|quest|racing|rocks|sbs|store|systems|tech|today|trade|uno|us|vc|vg|wiki|ws|zone|cc)$,REJECT
+  
+  # Regex untuk memblokir domain yang berakhiran dengan pola "judi-terpercaya.com" atau "slot-gacor.xyz"
+  - DOMAIN-REGEX,^(.*\.)?(judi|slot|casino|poker|bet|togel|maxwin|gacor)([-_].*)?(online|terpercaya|gacor|resmi|win|jp|maxwin)\.(com|net|org|site|fun|online|xyz|biz|info|club|vip|live|top|co|id|me|io|win|icu|buzz|cyou|shop|asia|best|digital|games|group|link|mobi|monster|name|ninja|pro|pw|quest|racing|rocks|sbs|store|systems|tech|today|trade|uno|us|vc|vg|wiki|ws|zone|cc)$,REJECT
+
+  # Regex tambahan untuk URL yang sering ditemukan di iklan judi (misalnya dari ad network)
+  # HATI-HATI dengan ini, bisa menyebabkan false positive
+  # - URL-REGEX,^(http|https)://.*/(iklan|banner|ads).*(judi|slot|casino|poker|bet|togel).*$,REJECT
+
+  # Beberapa domain spesifik yang sudah dikenal sebagai situs judi (jika Anda tahu)
+  # Ini bukan regex, tapi contoh domain biasa yang bisa ditambahkan
+  - DOMAIN-SUFFIX,poker88.com,REJECT
+  - DOMAIN-SUFFIX,agensbobet.net,REJECT
+  - DOMAIN-SUFFIX,slotgacor88.xyz,REJECT
+  - DOMAIN-SUFFIX,mabosway.club,REJECT
+  - DOMAIN-SUFFIX,klik4d.info,REJECT
+  # ... tambahkan lebih banyak domain spesifik yang Anda temukan
